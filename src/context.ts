@@ -4,8 +4,8 @@ import { Db } from 'mongodb';
 import { MongoChecker, MongoInserter } from 'mongodb-extension';
 import { createRetry, ErrorHandler, Handle, Handler, NumberMap, RetryWriter, Subscribe } from 'mq-one';
 import { NatsConnection } from 'nats';
+import { NatsChecker, NatsConfig, Publisher, Subscriber } from 'nats-extension';
 import { Attributes, Validator } from 'xvalidators';
-import { NatsChecker, NatsConfig, Publisher, Subscriber } from './lib';
 
 export interface User {
   id: string;
