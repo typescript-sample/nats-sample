@@ -2,9 +2,9 @@ import { HealthController, LogConfig, LogController } from 'express-ext';
 import { createLogger, map } from 'logger-core';
 import { Db } from 'mongodb';
 import { MongoChecker, MongoInserter } from 'mongodb-extension';
-import { createRetry, ErrorHandler, Handle, Handler, NumberMap, RetryWriter, Subscribe } from 'mq-one';
+import { createRetry, ErrorHandler, Handle, Handler, NumberMap, Publish, RetryWriter, Subscribe } from 'mq-one';
 import { NatsConnection } from 'nats';
-import { NatsChecker, NatsConfig, Publisher, Subscriber } from 'nats-extension';
+import { NatsChecker, NatsConfig, Publisher, Subscriber } from 'nats-plus';
 import { Attributes, Validator } from 'xvalidators';
 
 export interface User {
@@ -45,7 +45,7 @@ export interface Config {
 export interface ApplicationContext {
   health: HealthController;
   log: LogController;
-  publish: (user: User) => Promise<void>;
+  publish: Publish<User, void>;
   subscribe: Subscribe<User>;
   handle: Handle<User>;
 }
